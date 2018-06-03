@@ -1,0 +1,11 @@
+---
+- hosts: windows
+  vars:
+    win_path: "{{ win_path }}"
+    appname: "{{ appname }}"
+    ansible_path: "{{ workspace_path }}"
+  vars_files:
+    - "{{ workspace_path }}/usernamePassword.yml"
+  tasks:
+    - name: update app with wsadmin
+      win_command: cmd /c wsadmin -lang jython -user {{username}} -password {{password}} -f {{ win_path }}\UpdateApp.py {{ win_path }} {{ appname }}

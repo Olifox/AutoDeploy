@@ -1,0 +1,22 @@
+---
+- hosts: windows
+  vars:
+    win_path: "{{ win_path }}"
+    ansible_path: "{{ workspace_path }}"
+  tasks:
+    - name: copy update python script
+      win_copy:
+        src: "{{ workspace_path }}/UpdateApp.py"
+        dest: "{{ win_path }}/"
+    - name: copy smoke test python script
+      win_copy:
+        src: "{{ workspace_path }}/SmokeTest.py"
+        dest: "{{ win_path }}/"
+    - name: copy ear file
+      win_copy:
+        src: "{{ workspace_path }}/DefaultApplication.ear"
+        dest: "{{ win_path }}/"
+    - name: copy python library
+      win_copy:
+        src: "{{ workspace_path }}/wasspinner.py"
+        dest: "C:/Program Files (x86)/IBM/WebSphere/AppServer/optionalLibraries/jython/Lib/"
